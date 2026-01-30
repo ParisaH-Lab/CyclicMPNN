@@ -36,7 +36,7 @@ To run CyclicMPNN clone this github repo and install Python>=3.0, PyTorch, Numpy
 
 Full cyclic peptide model weights: `cyclicmpnn_weights/cyclicmpnn_48_010.pt`
 
-Helper scripts to generate poly-alanine *in silico* ensembles: `helper_scripts/insolution_genkic.py`
+Dataset creation scripts to generate poly-alanine *in silico* ensembles: `datasetcreation_scripts/insolution_genkic.py`
 
 Code organization:
 * `protein_mpnn_run.py` - the main script to initialialize and run the model.
@@ -47,7 +47,7 @@ Code organization:
 * `colab_notebooks/` - Google Colab examples
 * `training/` - code and data to retrain the model
 * `cyclicmpnn_weights/` - specific CyclicMPNN weights
-* `helper_scripts/` - CyclicMPNN *in silico* generation PyRosetta scripts and utils
+* `datasetcreation_scripts/` - CyclicMPNN *in silico* generation PyRosetta scripts and utils
 
 ## CyclicMPNN Citation
 ```
