@@ -2,7 +2,7 @@
 
 In order to use these scripts you need to install `PyRosetta`.
 
-This can be done following this example:
+This can be done following one of these examples:
 * [pyrosetta-installer](https://pypi.org/project/pyrosetta-installer/)
 * [pyrosetta direct install](https://www.pyrosetta.org/downloads)
 
