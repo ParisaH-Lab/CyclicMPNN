@@ -443,6 +443,48 @@ class BackboneGeneration:
         declarebond.apply(pose)
         return 0
 
+    def generate_initial_empty_alanine_pose(self, N: int) -> core.pose.Pose:
+       """
+       Generate a single cyclic peptide pose of alanines that is of size N
+
+       PARAMS
+       ------
+       :N (int): Desired size of input structure
+
+       RETURNS
+       -------
+       :gly_pose (core.pose.Pose): A Rosetta Pose instance that is all alanines of desired N-mer size
+           FoldTree has been updated and is uses the middle residue as a root
+           Cutpoints are added to the ends and a peptide bond is declared.
+       """
+
+       if self.empty_pose_test:
+           empty_pose = core.pose.Pose()
+           ala_pose = peptide_stub_mover(
+                   pose = empty_pose,
+                   residue_type = "ALA",
+                   sequence_len = N,
+                   )
+           flip_trans_omegabonds(ala_pose, N)
+       else:
+           ala_pose = io.pose_from_sequence(
+               seq="A"*N,
+               res_type="fa_standard",
+               auto_termini=False,
+           )
+
+       # Set the fold tree
+       root = self.foldtree_define(N)
+       ft = core.kinematics.FoldTree()
+       ft.clear()
+       ft.add_edge(root, 1 -1)
+       ft.add_edge(root, N, -1)
+       ft.reorder(root)
+       ala_pose.fold_tree(ft)
+
+       # Cyclize the pose (but don't declare a bond yet)
+       self.full_cyclize_pose_withoutbond(ala_pose)
+       return ala_pose
     def generate_initial_empty_glycine_pose(self, N: int) -> core.pose.Pose:
        """
        Generate a single cyclic peptide pose of glycines that is of size N
@@ -522,7 +564,7 @@ class BackboneGeneration:
         return 0
 
     @timeit
-    def generate_ensemble(self, s: int, nstruct: int, nofilter: bool) -> int:
+    def generate_ensemble(self, s: int, nstruct: int, nofilter: bool, alanine: bool) -> int:
         """
         Helper function for running full process of pose gen + genkic/filter + minimize output
         for a given size (s)
@@ -532,15 +574,20 @@ class BackboneGeneration:
         :s: The desired output size of our pose
         :nstruct: Number of desired outputs
         :nofilter: Argparse argument for if you should filter or not based on hbonds
+        :alanine: True if our pose are going to be made of alanines, this is to make
+            all L-alpha-amino acid conformations
 
         RETURNS
         -------
         :ensemble: No actual return, but instead a silent file of starting poses for design
         """
-        print("-"*4, "GenKIC, Size:", s, "Nstruct:", nstruct, "DEBUG:", self.DEBUG, "-"*4)
+        print("-"*4, "GenKIC, Size:", s, "Nstruct:", nstruct, "DEBUG:", self.DEBUG, "Alanine:", alanine, "-"*4)
 
         # Generate our initial pose
-        pose = self.generate_initial_empty_glycine_pose(s)
+        if alanine:
+            pose = self.generate_initial_empty_alanine_pose(s)
+        else:
+            pose = self.generate_initial_empty_glycine_pose(s)
 
         # Declare our terminal bond
         self.declare_terminal_bond(pose)
@@ -619,9 +666,11 @@ if __name__ == "__main__":
             as XML writes to disk for every structure, but here we do not. This can be done for time comparisons. Dont set \
             as it will make the process slower.")
     p.add_argument("--empty-pose-test", action="store_true", help="Run an empty pose test, since this is more representative of the XML script")
+    p.add_argument("--alanine", action="store_true", help="Make our pose all Alanines, this is important if you want your conformations to be \
+            all L-alpha-amino acids, if not passed then pose will be all Glycines. Which allow heterochiral conformations."
     args = p.parse_args()
 
     bbgen = BackboneGeneration(args.debug, args.sample_root, args.time_test, args.empty_pose_test)
     for s in args.size:
-        bbgen.generate_ensemble(s, args.nstruct, args.nofilter)
+        bbgen.generate_ensemble(s, args.nstruct, args.nofilter, args.alanine)
 
