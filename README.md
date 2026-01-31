@@ -1,9 +1,9 @@
-# CyclicMPNN - A cyclic peptide specialized fine-tuned version of ProteinMPNN
+# CyclicMPNN: Stable Cyclic Peptide Sequence Generation
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=11DKu21MMIl0KgKobTAUcPOg7BHXchi8H" width="800">
 </p>
 
-Read [CyclicMPNN paper]().
+Read [CyclicMPNN paper](). (Currently submitted to BioRxiv, will update once accessible.)
 
 This repository is a derivative of [ProteinMPNN](https://github.com/dauparas/ProteinMPNN) (Dauparas et al., 2022)
 
@@ -24,7 +24,7 @@ generating cyclic peptide backbones can be done more rapidly compared to traditi
 or physics-based approaches. However, designing energetically favorable cyclic peptide sequences
 to fit generated backbones using only canonical amino acids is nontrivial. We fine-tuned the state-
 of-the-art deep learning model for protein sequence design, ProteinMPNN, using a combination
-of x-ray crystal structures from the Protein Data Bank and *in silico* generated cyclic peptides. Our
+of X-ray crystal structures from the Protein Data Bank and *in silico* generated cyclic peptides. Our
 approach surpasses ProteinMPNN in cyclic peptide sequence design, producing energetically stable
 sequences with a higher success rate of folding into the generated cyclic peptide backbones. We show
 that CyclicMPNN can be used as a motif-inpainting strategy and in *de novo* sequence design tasks.
@@ -50,10 +50,11 @@ Code organization:
 * `datacreation_scripts/` - CyclicMPNN *in silico* generation PyRosetta scripts and utils
 
 ## CyclicMPNN Citation
+Currently submitted to BioRxiv, will update once accessible.
 ```
 @article{,
   title={CyclicMPNN: Stable Cyclic Peptide Sequence Generation},
-  author={Powers, Andrew Carl and Janthana, Yanapat and Hosseinzade, Parisa},
+  author={Powers, Andrew Carl and Janthana, Yanapat and Hosseinzadeh, Parisa},
   journal={},
   volume={},
   number={},  
