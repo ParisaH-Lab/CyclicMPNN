@@ -3,7 +3,7 @@
   <img src="https://drive.google.com/uc?export=view&id=11DKu21MMIl0KgKobTAUcPOg7BHXchi8H" width="800">
 </p>
 
-Read [CyclicMPNN paper](). (Currently submitted to BioRxiv, will update once accessible.)
+Read [CyclicMPNN paper](https://doi.org/10.64898/2026.01.31.702993 ).
 
 This repository is a derivative of [ProteinMPNN](https://github.com/dauparas/ProteinMPNN) (Dauparas et al., 2022)
 
@@ -50,17 +50,19 @@ Code organization:
 * `datacreation_scripts/` - CyclicMPNN *in silico* generation PyRosetta scripts and utils
 
 ## CyclicMPNN Citation
-Currently submitted to BioRxiv, will update once accessible.
+
 ```
-@article{,
-  title={CyclicMPNN: Stable Cyclic Peptide Sequence Generation},
-  author={Powers, Andrew Carl and Janthana, Yanapat and Hosseinzadeh, Parisa},
-  journal={},
-  volume={},
-  number={},  
-  pages={},
-  year={2026},
-  publisher={}
+@article {Powers2026.01.31.702993,
+	author = {Powers, Andrew C. and Janthana, Yanapat and Hosseinzadeh, Parisa},
+	title = {CyclicMPNN: Stable Cyclic Peptide Sequence Generation},
+	elocation-id = {2026.01.31.702993},
+	year = {2026},
+	doi = {10.64898/2026.01.31.702993},
+	publisher = {Cold Spring Harbor Laboratory},
+	abstract = {Cyclic peptides are a promising class of therapeutics due to their attractive drug qualities such as increased structural stability, cell permeability, and resistance to proteolytic degradation. With recent advancements in cyclic peptide backbone generation models like CyclicCAE and RFPeptide, generating cyclic peptide backbones can be done more rapidly compared to traditional algorithm or physics based approaches. However, designing energetically favorable cyclic peptide sequences to fit generated backbones using only canonical amino acids is nontrivial. We fine-tuned the state-of-the-art deep learning model for protein sequence design, ProteinMPNN, using a combination of X-ray crystal structures from the Protein Data Bank and in silico generated cyclic peptides. Our approach surpasses ProteinMPNN in cyclic peptide sequence design, producing energetically stable sequences with a higher success rate of folding into the generated cyclic peptide backbones. We show that CyclicMPNN can be used as a motif-inpainting strategy and in de novo sequence design tasks. We propose that CyclicMPNN will enable the rapid design of energetically stable cyclic peptide sequences, increasing the success rate of therapeutic cyclic peptide development.Competing Interest StatementThe authors have declared no competing interest.NIH, DP2GM146249f},
+	URL = {https://www.biorxiv.org/content/early/2026/01/31/2026.01.31.702993},
+	eprint = {https://www.biorxiv.org/content/early/2026/01/31/2026.01.31.702993.full.pdf},
+	journal = {bioRxiv}
 }
 ```
 -----------------------------------------------------------------------------------------------------
