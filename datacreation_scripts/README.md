@@ -28,3 +28,5 @@ python insolution_genkic.py --size 6 7 --nstruct 1000 --sample-root --alanine
 * `--sample-root`: Apply randomization to the root residue, as GenKIC will not sample the root.
 * `--alanine`: Our pose will be poly-alanine, if not set then they are poly-glycine
 ------------------------------------------------------------------------------
+
+If you are looking for other cyclic peptide & design based scripts / functions in PyRosetta please checkout my public repo: ![UsefulRosettaScripts](https://github.com/PowersPope/UsefulRosettaScripts)
